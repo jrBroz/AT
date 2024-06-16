@@ -4,10 +4,10 @@ import sqlite3
 def cadastrar_livro():
     
     nome_livro = input("Insira o Nome do livro:  ")
-    id_autor = input("Escreva o id do autor:  ")
-    id_editora = input("Escreva o id da editora:  ")
-    id_categoria = input("Escreva o id da editora:  ")
-    pais_de_publicacao = input("Escreva qual pais de publicacao:  ")
+    id_autor = input("Insira o id do autor:  ")
+    id_editora = input("Insira o id da editora:  ")
+    id_categoria = input("Insira o id da categoria:  ")
+    pais_de_publicacao = input("Insira qual pais de publicacao:  ")
     
     try:    
         conn = sqlite3.connect("BIBLIOTECA_ONLINE.db")
@@ -20,7 +20,9 @@ def cadastrar_livro():
                 PAIS_PUBLICACAO VARCHAR(100),
                 id_autor INTEGER,
                 id_editora INTEGER,
+                id_categoria INTEGER,
                 FOREIGN KEY(id_autor) REFERENCES Autor(ID_AUTOR),
+                FOREIGN KEY(id_categoria) REFERENCES Categoria(ID_CATEGORIA),
                 FOREIGN KEY(id_editora) REFERENCES EDITORA(ID_EDITORA));""")
 
         cursor.execute("INSERT INTO Livros(TITULO, id_autor, id_editora, id_categoria,PAIS_PUBLICACAO) VALUES (?,?,?,?,?);", (nome_livro,id_autor, id_editora,id_categoria, pais_de_publicacao))    
@@ -32,7 +34,7 @@ def cadastrar_livro():
         print("Erro ao cadastrar livro, tente novamente mais tarde.")
         
     except sqlite3.OperationalError as e: 
-        print("Um erro ocorreu" , e)
+        print("Um erro ocorreu")
         print("-" * 30)
 
 
@@ -98,7 +100,7 @@ def cadastrar_editora():
             conn = sqlite3.connect("BIBLIOTECA_ONLINE.db")
             cursor = conn.cursor()
         
-            nome_editora = input("Insira o nome da Categoria:  ")
+            nome_editora = input("Insira o nome da Editora:  ")
                 
             cursor.execute("""
                     CREATE TABLE IF NOT EXISTS Editora(ID_EDITORA INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -129,11 +131,9 @@ def listar_tudo_sobre_livro():
         
             SELECT Livros.TITULO AS Livro, Autor.NOME_AUTOR AS Autor, CATEGORIA.NOME_CATEGORIA AS Categoria, Editora.NOME_EDITORA AS Editora, Livros.PAIS_PUBLICACAO AS Pais_Publicacao
             FROM Livros
-            JOIN Livros ON Livros.id_autor = Autor.ID_AUTOR
-            JOIN Livros ON Livros.id_editora = Editora.ID_EDITORA
-            JOIN Livros ON Livros.id_categoria = CATEGORIA.ID_CATEGORIA;                                  
-                       
-                    """)     
+            JOIN Autor ON Autor.ID_AUTOR = Livros.id_autor
+            JOIN Editora ON Editora.ID_EDITORA=Livros.id_editora
+            JOIN Categoria ON CATEGORIA.ID_CATEGORIA=Livros.id_categoria;""")     
 
         livros_info_total = cursor.fetchall()
         print(livros_info_total)        
@@ -147,7 +147,7 @@ def listar_tudo_sobre_livro():
         print("Erro ao se conectar ao banco de dados. ")
     
     except sqlite3.OperationalError as e: 
-        print("Um erro ocorreu", e)
+        print("Um erro ocorreu, cadastre outras tabelas no banco de dados..")
         print("-" * 30)    
     
     
@@ -187,10 +187,10 @@ def listar_todos_livros():
         conn = sqlite3.connect("BIBLIOTECA_ONLINE.db")
         cursor = conn.cursor()
         
-        print("Listando todos os Autores cadastrados ate o momento:  ")
+        print("Listando todos os livros cadastrados ate o momento:  ")
         print("-" * 30)
                     
-        cursor.execute("SELECT * FROM Livros;")     # TALVEZ SELECT NOME_AUTOR
+        cursor.execute("SELECT * FROM Livros;")
 
         livros = cursor.fetchall()
         print(livros)        
@@ -216,7 +216,7 @@ def listar_todas_categorias():
         conn = sqlite3.connect("BIBLIOTECA_ONLINE.db")
         cursor = conn.cursor()
         
-        print("Listando todos os Autores cadastrados ate o momento:  ")
+        print("Listando todas as categorias cadastradas ate o momento:  ")
         print("-" * 30)
                     
         cursor.execute("SELECT * FROM Categoria;")     
@@ -264,11 +264,6 @@ def listar_todas_editoras():
     except sqlite3.OperationalError: 
         print("Vazio.")
         print("-" * 30)
-        
-
-
-
-
         
 
 def menu():
