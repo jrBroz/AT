@@ -270,7 +270,7 @@ def menu():
     
     while True:
     
-        print(" [1] Cadastrar Autor\n [2] Cadastrar Livro\n [3] Cadastrar Categoria\n [4] Cadastrar Editora\n [5] Listar Autores\n [6] Listar Livros\n [7] Listar Categoria\n [8] Listar Editora\n [9] Listar Todas informacoes sobre livro\n [10] Sair")
+        print(" [1] Cadastrar Autor\n [2] Cadastrar Livro\n [3] Cadastrar Categoria\n [4] Cadastrar Editora\n [5] Listar Livros\n [6] Listar Autores\n [7] Listar Categoria\n [8] Listar Editora\n [9] Listar Todas informacoes sobre livro\n [10] Sair")
         print("-" * 30)
         escolha_usuario = input("Escolha:  ")
         

@@ -1,11 +1,11 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obter os dados do formulário
-    $verbete = $_POST['Verbete'];
-    $descricao = $_POST['descricao'];
-    $contribuicao = $_POST['contribuicao'];
-    $email = $_POST['email'];
-    $imagelink = $_POST['imagelink']; // novo campo para o link da imagem
+    $nome = $_POST['Nome_Livro'];
+    $Resenha = $_POST['Resenha'];
+    $Escritor = $_POST['Escritor'];
+    $Email = $_POST['Email'];
+    $Capa_Livro = $_POST['Capa_Livro']; // novo campo para o link da imagem
 
     // Conectar ao banco de dados usando mysqli
     $conexao = mysqli_connect('localhost', 'id22328890_rafael', 'Chave13!');
@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar a consulta
-    $consulta = $conexao->prepare('INSERT INTO registros (Verbete, Significado, Contribuicao, Email, Imagelink) VALUES (?, ?, ?, ?, ?)');
-    $consulta->bind_param('sssss', $verbete, $descricao, $contribuicao, $email, $imagelink);
+    $consulta = $conexao->prepare('INSERT INTO registros (Nome, Resenha, Escritor, Email,Capa_Livro) VALUES (?, ?, ?, ?, ?)');
+    $consulta->bind_param('sssss', $nome, $Resenha, $Escritor, $Email, $Capa_Livro);
 
     // Executar a consulta
     if ($consulta->execute()) {

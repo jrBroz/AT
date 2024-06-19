@@ -27,34 +27,34 @@
 
             <form action="adiciona.php" method="post" class="mt-3">
                 <div class="form-group row">
-                    <label for="Verbete" class="col-sm-2 col-form-label"><strong>Verbete:</strong></label>
+                    <label for="Nome_Livro" class="col-sm-2 col-form-label"><strong>Nome Livro:</strong></label>
                     <div class="col-sm-10">
-                        <input name="Verbete" type="text" id="Verbete" class="form-control" size="60" required>
+                        <input name="Nome_Livro" type="text" id="Nome_Livro" class="form-control" size="60" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="descricao" class="col-sm-2 col-form-label"><strong>Descrição:</strong></label>
+                    <label for="descricao" class="col-sm-2 col-form-label"><strong>Resenha:</strong></label>
                     <div class="col-sm-10">
-                        <input name="descricao" type="text" id="descricao" class="form-control" size="100" required>
+                        <input name="Resenha" type="text" id="Resenha" class="form-control" size="100" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="contribuicao" class="col-sm-2 col-form-label"><strong>Contribuição:</strong></label>
+                    <label for="Escritor" class="col-sm-2 col-form-label"><strong>Escritor:</strong></label>
                     <div class="col-sm-10">
-                        <input name="contribuicao" type="text" id="contribuicao" class="form-control" size="30" required>
+                        <input name="Escritor" type="text" id="Escritor" class="form-control" size="30" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
+                    <label for="Email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
                     <div class="col-sm-10">
-                        <input name="email" type="email" id="email" class="form-control" size="30" required>
+                        <input name="Email" type="email" id="Email" class="form-control" size="30" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="imagelink" class="col-sm-2 col-form-label"><strong>Link da Imagem:</strong></label>
+                    <label for="Capa_Livro" class="col-sm-2 col-form-label"><strong>Link Capa do Livro</strong></label>
                     <div class="col-sm-10">
-                        <input name="imagelink" type="url" id="imagelink" class="form-control" size="100" required>
-                    </div>
+                        <input name="Capa_Livro" type="url" id="Capa_Livro" class="form-control" size="100" required>
+                    </div> 
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10 offset-sm-2">

@@ -30,7 +30,7 @@
             error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Obter a Verbete do formulário
-                $Verbete = $_POST['frase'];
+                $Nome_Livro = $_POST['Nome_Livro'];
 
                 // Conectar ao banco de dados usando mysqli
                 $conexao = mysqli_connect('localhost', 'id22328890_rafael', 'Chave13!');
@@ -41,8 +41,8 @@
                 }
 
                 // Preparar a consulta
-                $consulta = $conexao->prepare('SELECT * FROM registros WHERE Verbete LIKE ?');
-                $param = '%' . $Verbete . '%';
+                $consulta = $conexao->prepare('SELECT * FROM registros WHERE Nome LIKE ?');
+                $param = '%' . $Nome_Livro . '%';
                 $consulta->bind_param('s', $param);
 
                 // Executar a consulta
@@ -53,12 +53,12 @@
                 if ($resultado->num_rows > 0) {
                     echo '<table class="table mt-3">';
                     while ($campo = $resultado->fetch_array(MYSQLI_NUM)) {
-                        echo '<tr><td><strong>Verbete:</strong></td><td>' . htmlspecialchars($campo[0]) . '</td></tr>';
-                        echo '<tr><td><strong>Descrição:</strong></td><td>' . htmlspecialchars($campo[1]) . '</td></tr>';
-                        echo '<tr><td><strong>Contribuição:</strong></td><td>' . htmlspecialchars($campo[2]) . '</td></tr>';
+                        echo '<tr><td><strong>Nome:</strong></td><td>' . htmlspecialchars($campo[0]) . '</td></tr>';
+                        echo '<tr><td><strong>Resenha:</strong></td><td>' . htmlspecialchars($campo[1]) . '</td></tr>';
+                        echo '<tr><td><strong>Escritor:</strong></td><td>' . htmlspecialchars($campo[2]) . '</td></tr>';
                         echo '<tr><td><strong>Email:</strong></td><td>' . htmlspecialchars($campo[3]) . '</td></tr>';
                         // Adicionar a coluna para exibir a imagem
-                        echo '<tr><td><strong>Imagem:</strong></td><td><img src="' . htmlspecialchars($campo[4]) . '" class="responsive-img"></td></tr>';
+                        echo '<tr><td><strong>Capa_Livro:</strong></td><td><img src="' . htmlspecialchars($campo[4]) . '" class="responsive-img"></td></tr>';
                     }
                     echo '</table>';
                 } else {
@@ -73,7 +73,7 @@
             <!-- Formulário para pesquisa -->
             <form action="" method="post" class="mt-3">
                 <div class="form-group">
-                    <input name="frase" type="text" class="form-control" placeholder="Digite um termo para pesquisar" required>
+                    <input name="Nome_Livro" type="text" class="form-control" placeholder="Digite livro  para pesquisar a resenha" required>
                 </div>
                 <input name="submit" type="submit" value="Pesquisar" class="btn btn-primary">
             </form>

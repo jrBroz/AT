@@ -68,7 +68,7 @@ def listar_todos_autor():
         print("Listando todos os Autores cadastrados ate o momento:  ")
         print("-" * 30)
                     
-        cursor.execute("SELECT * FROM Autor;")     # TALVEZ SELECT NOME_AUTOR
+        cursor.execute("SELECT * FROM Autor;")     
 
         autor = cursor.fetchall()
         print(autor)        
@@ -310,8 +310,7 @@ def menu():
                 
             case '6':
                 listar_todos_autor()
-                            
-                
+                                            
             case '7':
                 deletar_livro()
                             

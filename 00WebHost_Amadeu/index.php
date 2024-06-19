@@ -28,13 +28,13 @@
                 <form action="pesquisa.php" method="post" class="mt-3">
                     <div class="form-row justify-content-center">
                         <div class="col-auto">
-                            <input name="frase" type="text" id="frase" class="form-control" placeholder="Digite sua pesquisa" required>
+                            <input name="Nome_Livro" type="text" id="Nome_Livro" class="form-control" placeholder="Digite sua pesquisa" required>
                         </div>
                         <div class="col-auto">
                             <input name="submit" type="submit" value="Pesquisar" class="btn btn-primary">
                         </div>
                         <div class="col-auto">
-                            <a href="inserir.php" class="btn btn-secondary">Cadastrar Novo Verbete</a>
+                            <a href="inserir.php" class="btn btn-secondary">Cadastrar Novo Livro!</a>
                         </div>
                     </div>
                 </form>
